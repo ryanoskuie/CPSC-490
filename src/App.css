@@ -281,6 +281,12 @@ body {
   padding: 0.35rem 0.7rem;
   font-size: 0.8rem;
   outline: none;
+  color: #111827;
+  background: #f9fafb;
+}
+
+.chat-input::placeholder {
+  color: #6b7280;
 }
 
 .chat-input:focus {
@@ -331,6 +337,7 @@ body {
   transition: background 0.15s ease, transform 0.1s ease,
     box-shadow 0.15s ease;
   box-shadow: 0 8px 18px rgba(148, 163, 184, 0.4);
+  color: #111827;
 }
 
 .back-button:hover {
@@ -352,6 +359,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  color: #111827;
 }
 
 .tool-pill-label {
@@ -422,11 +430,11 @@ body {
 }
 
 .tool-textarea {
-  background: rgba(248, 250, 252, 0.95);
+  background: rgba(248, 250, 252, 0.98);
   border-radius: 0.75rem;
   padding: 0.65rem 0.75rem;
   font-size: 0.8rem;
-  color: #4b5563;
+  color: #1f2937;
   border: 1px dashed rgba(148, 163, 184, 0.9);
 }
 
@@ -439,12 +447,16 @@ body {
 }
 
 .tool-output {
-  background: rgba(79, 70, 229, 0.09);
+  background: rgba(79, 70, 229, 0.08);
   border-radius: 0.75rem;
   padding: 0.6rem 0.75rem;
   font-size: 0.8rem;
-  color: #312e81;
+  color: #1e1b4b;
   border: 1px solid rgba(129, 140, 248, 0.6);
+}
+
+.tool-output p {
+  margin: 0 0 0.25rem;
 }
 
 .tool-output.quiz ul {
@@ -464,7 +476,7 @@ body {
 }
 
 .secondary-card {
-  opacity: 0.9;
+  opacity: 0.95;
   margin-top: 0.35rem;
 }
 
@@ -490,20 +502,24 @@ body {
 }
 
 .tool-list-item {
-  background: rgba(248, 250, 252, 0.96);
-  border-radius: 0.75rem;
-  padding: 0.45rem 0.65rem;
-  font-size: 0.8rem;
+  background: rgba(248, 250, 252, 0.98);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.4rem;
-  border: 1px solid rgba(148, 163, 184, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  color: #1f2937;
+  /* ensure dark text */
+  font-weight: 500;
 }
 
 .tool-list-meta {
-  font-size: 0.72rem;
-  color: #6b7280;
+  font-size: 0.78rem;
+  color: #4b5563;
+  font-weight: 500;
 }
 
 .dot {
@@ -541,25 +557,28 @@ body {
   font-size: 0.78rem;
   background: rgba(248, 250, 252, 0.96);
   border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #1f2937;
 }
 
 /* Textbook shelf */
 
 .tool-shelf {
   display: flex;
-  gap: 0.4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
 }
 
 .book-spine {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  padding: 0.5rem 0.35rem;
-  border-radius: 0.6rem;
-  background: rgba(129, 140, 248, 0.9);
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: rgba(129, 140, 248, 0.95);
   color: #f9fafb;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
+  box-shadow: 0 6px 14px rgba(129, 140, 248, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 /* Responsive */

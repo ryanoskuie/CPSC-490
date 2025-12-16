@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Menu,
-  Search,
-  User,
-  Check,
-  BarChart3,
-  BookOpen,
-  Sparkles,
-} from "lucide-react";
+import { Menu, Search, User, Sparkles } from "lucide-react";
 import "./App.css";
 
 const TOOL_KEYS = {
@@ -34,11 +26,13 @@ function App() {
   };
 
   if (mode === "tool" && selectedTool) {
+    const label = toolLabel(selectedTool);
+
     return (
       <div className="app">
         <header className="app-header">
           <h1 className="app-title">AI Study Companion</h1>
-          <p className="app-subtitle">Prototype – {toolTitle(selectedTool)}</p>
+          <p className="app-subtitle">Prototype – {label}</p>
         </header>
 
         <ToolDetail toolKey={selectedTool} onBack={handleBackToHome} />
@@ -46,6 +40,7 @@ function App() {
     );
   }
 
+  // HOME / MAIN DASHBOARD
   return (
     <div className="app">
       <header className="app-header">
@@ -72,28 +67,58 @@ function App() {
               </div>
             </div>
 
-            {/* Balanced content layout */}
+            {/* Main content: tools + chat */}
             <div className="dashboard-content">
-
-              {/* MAIN SECTION – TOOLS */}
+              {/* Tools */}
               <div className="dashboard-main">
-                <p className="dashboard-intro">What would you like help with today?</p>
+                <p className="dashboard-intro">
+                  What would you like help with today?
+                </p>
 
                 <div className="tool-grid">
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.SUMMARIZATION)}>Summarization</button>
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.QUIZ)}>Quiz Generator</button>
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.FLASHCARD)}>Flash Card</button>
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.ASSIGNMENT)}>Assignment Tracker</button>
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.VISUAL)}>Visual Generator</button>
-                  <button className="tool-pill" onClick={() => handleToolClick(TOOL_KEYS.TEXTBOOK)}>Textbook Hub</button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.SUMMARIZATION)}
+                  >
+                    Summarization
+                  </button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.QUIZ)}
+                  >
+                    Quiz Generator
+                  </button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.FLASHCARD)}
+                  >
+                    Flash Card
+                  </button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.ASSIGNMENT)}
+                  >
+                    Assignment Tracker
+                  </button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.VISUAL)}
+                  >
+                    Visual Generator
+                  </button>
+                  <button
+                    className="tool-pill"
+                    onClick={() => handleToolClick(TOOL_KEYS.TEXTBOOK)}
+                  >
+                    Textbook Hub
+                  </button>
                 </div>
               </div>
 
-              {/* CHAT – smaller + spaced */}
+              {/* Chat */}
               <div className="dashboard-chat">
                 <ChatPanel />
               </div>
-
             </div>
           </div>
         </div>
@@ -102,14 +127,14 @@ function App() {
   );
 }
 
-function toolTitle(key) {
+function toolLabel(key) {
   return {
-    summarization: "Summarization",
-    quiz: "Quiz Generator",
-    flashcard: "Flash Cards",
-    assignment: "Assignment Tracker",
-    visual: "Visual Generator",
-    textbook: "Textbook Hub",
+    [TOOL_KEYS.SUMMARIZATION]: "Summarization",
+    [TOOL_KEYS.QUIZ]: "Quiz Generator",
+    [TOOL_KEYS.FLASHCARD]: "Flash Cards",
+    [TOOL_KEYS.ASSIGNMENT]: "Assignment Tracker",
+    [TOOL_KEYS.VISUAL]: "Visual Generator",
+    [TOOL_KEYS.TEXTBOOK]: "Textbook Hub",
   }[key];
 }
 
@@ -119,7 +144,9 @@ function ToolDetail({ toolKey, onBack }) {
 
   return (
     <div className="tool-page">
-      <button className="back-button" onClick={onBack}>← Previous Page</button>
+      <button className="back-button" onClick={onBack}>
+        ← Previous Page
+      </button>
 
       <div className="tool-layout">
         <div className="tool-text">
@@ -128,7 +155,9 @@ function ToolDetail({ toolKey, onBack }) {
           <p className="tool-tagline">{detail.tagline}</p>
 
           <ul className="tool-bullets">
-            {detail.bullets.map((b, i) => <li key={i}>{b}</li>)}
+            {detail.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
           </ul>
         </div>
 
@@ -143,7 +172,7 @@ function ToolDetail({ toolKey, onBack }) {
 }
 
 const TOOL_DETAILS = {
-  summarization: {
+  [TOOL_KEYS.SUMMARIZATION]: {
     label: "Summarization",
     tagline: "Turn long readings into structured study notes.",
     bullets: [
@@ -157,12 +186,16 @@ const TOOL_DETAILS = {
         <div className="tool-textarea">Paste your notes here…</div>
         <div className="tool-tag secondary">Output</div>
         <div className="tool-output">
-          Summary<br />Key concepts<br />Important terms
+          • Summary
+          <br />
+          • Key concepts
+          <br />
+          • Important terms
         </div>
       </>
     ),
   },
-  quiz: {
+  [TOOL_KEYS.QUIZ]: {
     label: "Quiz Generator",
     tagline: "Generate practice questions instantly.",
     bullets: [
@@ -187,13 +220,13 @@ const TOOL_DETAILS = {
       </>
     ),
   },
-  flashcard: {
+  [TOOL_KEYS.FLASHCARD]: {
     label: "Flash Cards",
     tagline: "AI-powered flashcards for memorization.",
     bullets: [
       "Automatically generated from notes.",
-      "Great for studying vocabulary & concepts.",
-      "Spaced repetition support.",
+      "Great for vocabulary & key concepts.",
+      "Supports spaced repetition.",
     ],
     main: (
       <>
@@ -205,13 +238,13 @@ const TOOL_DETAILS = {
         <div className="tool-flashcard secondary-card">
           <div className="tool-flashcard-label">Answer</div>
           <div className="tool-flashcard-body">
-            ATP is the molecule used for cellular energy.
+            ATP is the molecule that stores and transfers energy in cells.
           </div>
         </div>
       </>
     ),
   },
-  assignment: {
+  [TOOL_KEYS.ASSIGNMENT]: {
     label: "Assignment Tracker",
     tagline: "Stay ahead of deadlines.",
     bullets: [
@@ -222,19 +255,32 @@ const TOOL_DETAILS = {
     main: (
       <div className="tool-list">
         <div className="tool-list-item">
-          <span><span className="dot green" />CS 201 – Problem Set 3</span>
+          <span>
+            <span className="dot green" />
+            CS 201 – Problem Set 3
+          </span>
           <span className="tool-list-meta">Due Thu</span>
         </div>
         <div className="tool-list-item">
-          <span><span className="dot yellow" />Biology – Lab Report</span>
+          <span>
+            <span className="dot yellow" />
+            Biology – Lab Report
+          </span>
           <span className="tool-list-meta">Due Sun</span>
+        </div>
+        <div className="tool-list-item">
+          <span>
+            <span className="dot red" />
+            History – Essay Outline
+          </span>
+          <span className="tool-list-meta">Due Tomorrow</span>
         </div>
       </div>
     ),
   },
-  visual: {
+  [TOOL_KEYS.VISUAL]: {
     label: "Visual Generator",
-    tagline: "Transform concepts into diagrams.",
+    tagline: "Transform concepts into simple diagrams.",
     bullets: [
       "Explain complex topics visually.",
       "Helps with memory and comprehension.",
@@ -242,18 +288,17 @@ const TOOL_DETAILS = {
     ],
     main: (
       <>
-        <div className="tool-textarea small">
-          “Explain the water cycle.”
-        </div>
+        <div className="tool-textarea small">“Explain the water cycle.”</div>
         <div className="tool-diagram">
           <div className="diagram-node">Evaporation</div>
           <div className="diagram-node">Condensation</div>
           <div className="diagram-node">Precipitation</div>
+          <div className="diagram-node">Collection</div>
         </div>
       </>
     ),
   },
-  textbook: {
+  [TOOL_KEYS.TEXTBOOK]: {
     label: "Textbook Hub",
     tagline: "All your books in one place.",
     bullets: ["Upload PDFs", "Search chapters", "Bookmark pages"],
@@ -264,6 +309,9 @@ const TOOL_DETAILS = {
           <div className="book-spine">Psychology</div>
           <div className="book-spine">Calculus</div>
         </div>
+        <div className="tool-textarea small search">
+          Search: “cell respiration”
+        </div>
       </>
     ),
   },
@@ -271,9 +319,21 @@ const TOOL_DETAILS = {
 
 function ChatPanel() {
   const [messages, setMessages] = useState([
-    { id: 1, sender: "ai", text: "Hi! I’m your AI Study Companion. How can I help today?" },
-    { id: 2, sender: "user", text: "I have a biology exam on photosynthesis." },
-    { id: 3, sender: "ai", text: "I can summarize chapters, make quizzes, or create flashcards!" },
+    {
+      id: 1,
+      sender: "ai",
+      text: "Hi! I’m your AI Study Companion. How can I help today?",
+    },
+    {
+      id: 2,
+      sender: "user",
+      text: "I have a biology exam on photosynthesis.",
+    },
+    {
+      id: 3,
+      sender: "ai",
+      text: "I can summarize chapters, generate quizzes, or create flashcards for that topic.",
+    },
   ]);
 
   const [input, setInput] = useState("");
@@ -282,12 +342,16 @@ function ChatPanel() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    const userMsg = { id: messages.length + 1, sender: "user", text: input };
+    const userMsg = {
+      id: messages.length + 1,
+      sender: "user",
+      text: input.trim(),
+    };
     const aiMsg = {
       id: messages.length + 2,
       sender: "ai",
       text:
-        "This is a demo AI response. In a real app, this would be dynamically generated!",
+        "This is a demo response showing how the assistant would reply. In a real app, this would be generated live.",
     };
 
     setMessages([...messages, userMsg, aiMsg]);
@@ -303,7 +367,9 @@ function ChatPanel() {
           </div>
           <div>
             <div className="chat-title">AI Study Assistant</div>
-            <div className="chat-subtitle">Ask questions about your courses</div>
+            <div className="chat-subtitle">
+              Ask questions about your courses
+            </div>
           </div>
         </div>
       </div>
@@ -333,3 +399,4 @@ function ChatPanel() {
 }
 
 export default App;
+
