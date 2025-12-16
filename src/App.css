@@ -1,0 +1,591 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #0f172a;
+  background-color: #f3f4ff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #fdf2ff 0, #eef2ff 40%, #e5e7eb);
+}
+
+/* Layout */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  gap: 2rem;
+}
+
+/* Header */
+
+.app-header {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #111827;
+}
+
+.app-subtitle {
+  margin: 0.4rem 0 0.9rem;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* Main dashboard */
+
+.dashboard {
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 2rem;
+  padding: 0;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  overflow: hidden;
+}
+
+/* Mock screen container */
+
+.mock-screen {
+  border-radius: 2rem;
+  padding: 1.75rem 2rem 2rem;
+  background: #f3f4f6;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mock-screen.gradient {
+  background: linear-gradient(180deg, #fce7f3, #e9d5ff, #c4b5fd);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Top bar */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+  padding: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.top-bar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.top-bar-right {
+  display: flex;
+  gap: 0.35rem;
+}
+
+/* Dashboard layout: tools + chat */
+
+.dashboard-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-main {
+  flex: 3 1 420px;
+  min-width: 0;
+}
+
+.dashboard-chat {
+  flex: 1 1 260px;
+  max-width: 320px;
+  min-width: 0;
+}
+
+/* Tools section */
+
+.dashboard-intro {
+  font-size: 1.1rem;
+  color: #374151;
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.tool-pill {
+  font-size: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  border: none;
+  background: #ffffff;
+  color: #4b5563;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+
+.tool-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(148, 163, 184, 0.55);
+  background: #ffffff;
+}
+
+/* Chat panel */
+
+.chat-panel {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1.1rem;
+  padding: 0.7rem 0.8rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.35);
+  height: 100%;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-title-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chat-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f973b7, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f9fafb;
+  box-shadow: 0 6px 14px rgba(168, 85, 247, 0.6);
+}
+
+.chat-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.chat-subtitle {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+/* Chat messages */
+
+.chat-messages {
+  flex: 1;
+  max-height: 130px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-right: 0.1rem;
+}
+
+.chat-message {
+  display: flex;
+}
+
+.chat-message.ai {
+  justify-content: flex-start;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message-text {
+  max-width: 75%;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  border-radius: 0.75rem;
+}
+
+.chat-message.ai .chat-message-text {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.chat-message.user .chat-message-text {
+  background: #4c1d95;
+  color: #f9fafb;
+}
+
+/* Chat input */
+
+.chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+.chat-input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.4);
+}
+
+.chat-send-button {
+  border-radius: 999px;
+  border: none;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #4c1d95;
+  color: #f9fafb;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease,
+    box-shadow 0.15s ease;
+}
+
+.chat-send-button:hover {
+  background: #5b21b6;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(76, 29, 149, 0.55);
+}
+
+/* Tool detail page */
+
+.tool-page {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-button {
+  align-self: flex-start;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 0.15s ease, transform 0.1s ease,
+    box-shadow 0.15s ease;
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.4);
+}
+
+.back-button:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(148, 163, 184, 0.6);
+}
+
+.tool-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: stretch;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.tool-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tool-pill-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(216, 180, 254, 0.35);
+  color: #6b21a8;
+}
+
+.tool-title {
+  margin: 0.1rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.tool-tagline {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0.1rem 0 0.4rem;
+}
+
+.tool-bullets {
+  margin: 0.2rem 0 0;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.tool-bullets li {
+  margin-bottom: 0.25rem;
+}
+
+.tool-mock {
+  display: flex;
+  align-items: stretch;
+}
+
+.tool-mock-inner {
+  width: 100%;
+  min-height: 300px;
+  padding: 1.5rem;
+  border-radius: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Elements inside tool views */
+
+.tool-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4b5563;
+  margin-bottom: 0.15rem;
+}
+
+.tool-tag.secondary {
+  margin-top: 0.35rem;
+}
+
+.tool-textarea {
+  background: rgba(248, 250, 252, 0.95);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.8rem;
+  color: #4b5563;
+  border: 1px dashed rgba(148, 163, 184, 0.9);
+}
+
+.tool-textarea.small {
+  font-size: 0.78rem;
+}
+
+.tool-textarea.search {
+  margin-top: 0.5rem;
+}
+
+.tool-output {
+  background: rgba(79, 70, 229, 0.09);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  color: #312e81;
+  border: 1px solid rgba(129, 140, 248, 0.6);
+}
+
+.tool-output.quiz ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1rem;
+}
+
+/* Flashcard layout */
+
+.tool-flashcard {
+  background: rgba(248, 250, 252, 0.97);
+  border-radius: 0.9rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 0.8rem;
+  color: #111827;
+}
+
+.secondary-card {
+  opacity: 0.9;
+  margin-top: 0.35rem;
+}
+
+.tool-flashcard-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-bottom: 0.2rem;
+}
+
+.tool-flashcard-body {
+  font-size: 0.83rem;
+}
+
+/* Assignment list */
+
+.tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tool-list-item {
+  background: rgba(248, 250, 252, 0.96);
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.tool-list-meta {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  margin-right: 0.35rem;
+  display: inline-block;
+}
+
+.dot.green {
+  background: #22c55e;
+}
+
+.dot.yellow {
+  background: #facc15;
+}
+
+.dot.red {
+  background: #f97316;
+}
+
+/* Visual diagram */
+
+.tool-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.diagram-node {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  background: rgba(248, 250, 252, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+/* Textbook shelf */
+
+.tool-shelf {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.book-spine {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 0.5rem 0.35rem;
+  border-radius: 0.6rem;
+  background: rgba(129, 140, 248, 0.9);
+  color: #f9fafb;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .tool-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+
+  .dashboard-chat {
+    max-width: none;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 2rem 1rem;
+  }
+}
